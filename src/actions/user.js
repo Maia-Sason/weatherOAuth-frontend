@@ -58,3 +58,27 @@ export const checkAuthenticated = () => async (dispatch) => {
     });
   }
 };
+
+export const loadUser = () => async (dispatch) => {
+  try {
+    const config = {
+      credentials: "include",
+    };
+
+    const res = await axios.get(`/user`, config);
+    if (res.data.error) {
+      dispatch({
+        type: USER_FAIL,
+      });
+    } else {
+      dispatch({
+        type: USER_SUCCESS,
+        payload: res.data,
+      });
+    }
+  } catch (err) {
+    dispatch({
+      type: USER_FAIL,
+    });
+  }
+};

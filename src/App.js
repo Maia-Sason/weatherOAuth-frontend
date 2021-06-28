@@ -1,4 +1,4 @@
-import "./css/App.css";
+// import "./css/App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -17,13 +17,15 @@ import Layout from "./hoc/Layout";
 import Home from "./containers/Home";
 import Login from "./containers/Login";
 import All from "./containers/All.js";
+import Navbar from "./components/Navbar.js";
+import Navbar_old from "./components/Navbar_old";
 
 function App() {
   return (
     <Provider store={store}>
       <CssBaseline>
-        <div>Hello</div>
         <Router>
+          <Navbar />
           <Layout>
             <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Home} />

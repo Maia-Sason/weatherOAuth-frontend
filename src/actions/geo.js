@@ -6,22 +6,44 @@ import {
   GET_GEO_WEATHER_FAIL,
 } from "./types";
 
-const getUserLocation = () => {
+export const getUserLocation = () => async (dispatch) => {
   function success(position) {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    const latitude = position.coords.latitude.toFixed(2);
+    const longitude = position.coords.longitude.toFixed(2);
+    const config = {
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "content-type": "application/json",
+      },
+    };
 
-    console.log(`Postion: ${latitude}, ${longitude}`);
+    const body = JSON.stringify({
+      lat: latitude,
+      long: longitude,
+    });
+
+    axios.post("/location", body, config);
+
+    dispatch({
+      type: GET_LOCATION_SUCCESS,
+      payload: [latitude, longitude],
+    });
   }
 
   function error() {
-    console.error("Issue retrieving location!");
+    dispatch({
+      type: GET_LOCATION_FAIL,
+      payload: "Issue retrieving geocoordinates.",
+    });
   }
 
   if (!navigator.geolocation) {
-    console.log("Geolocation not supported by your browser");
+    dispatch({
+      type: GET_LOCATION_FAIL,
+      payload: "Geolocation not supported by your browser",
+    });
   } else {
-    console.log("Locating ...");
     navigator.geolocation.getCurrentPosition(success, error);
   }
 };

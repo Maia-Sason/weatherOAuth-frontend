@@ -9,71 +9,18 @@ import {
 
 import { connect } from "react-redux";
 import { login, checkAuthenticated, loginFacebook } from "../actions/user";
+import { Redirect } from "react-router-dom";
 
-import { Skeleton } from "@material-ui/lab";
-
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  button: {
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-}));
-
-function Login({ login, checkAuthenticated, loginFacebook }) {
-  const classes = useStyles();
-  const FormRow = () => {
-    return (
-      <>
-        <Grid item xs={1} justify="space-around">
-          <Skeleton variant="rect" width={40} height={35} />
-        </Grid>
-        <Grid item xs={7}>
-          <Paper
-            elevation={0}
-            noWrap
-            className={classes.button}
-            variant="contained"
-          >
-            Hello
-          </Paper>
-        </Grid>
-        <Grid item xs={8}>
-          <Paper noWrap className={classes.button} variant="contained">
-            Hello
-          </Paper>
-        </Grid>
-      </>
-    );
-  };
+function Login({ isAuthenticated, checkAuthenticated, loginFacebook }) {
+  if (isAuthenticated) {
+    return <Redirect push to="/" />;
+  }
 
   return (
-    <div className={classes.root}>
+    <div>
       Here we will ask user to log into website with Facebook account. Maybe
       explain to user what this is all about!
-      <CircularProgress />
-      <Grid container spacing={1}>
-        <Grid container item xs={12} spacing={1}>
-          <FormRow />
-        </Grid>
-        <Grid container item xs={4} spacing={1}>
-          <FormRow />
-        </Grid>
-        <Grid container item xs={12} spacing={1}>
-          <FormRow />
-        </Grid>
-        <Grid container item xs={12} spacing={1}>
-          <FormRow />
-        </Grid>
-      </Grid>
+      {/* <CircularProgress /> */}
       <Button variant="contained" onClick={loginFacebook}>
         Log in w Facebook
       </Button>
@@ -84,6 +31,12 @@ function Login({ login, checkAuthenticated, loginFacebook }) {
   );
 }
 
-export default connect(null, { login, checkAuthenticated, loginFacebook })(
-  Login
-);
+const mapStatetoProps = (state) => ({
+  isAuthenticated: state.user.isAuthenticated,
+});
+
+export default connect(mapStatetoProps, {
+  login,
+  checkAuthenticated,
+  loginFacebook,
+})(Login);
