@@ -11,8 +11,6 @@ const WeatherCard = ({ city, icon, farenheight, feelsLike, description }) => {
     root: {
       "& > *": {
         margin: theme.spacing(1),
-        width: theme.spacing(50),
-        height: theme.spacing(32),
       },
     },
     containerPaper: {
