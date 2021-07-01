@@ -36,7 +36,7 @@ function Login({ isAuthenticated, checkAuthenticated, loginFacebook }) {
         </Box>
         <Box>
           <Typography variant="h6">
-            Join Weather and get weather information by a glance
+            Join Weather and get weather information at a glance
           </Typography>
         </Box>
       </Grid>

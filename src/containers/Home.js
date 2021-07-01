@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import WeatherCard from "../components/WeatherCard";
 import MiniWeather from "../components/MiniWeather";
+import WeatherIcon from "../components/WeatherIcon";
 import WeatherCardLoad from "../components/WeatherCardLoad";
 import SideInfo from "../components/SideInfo";
 import { Typography, Grid, Box, makeStyles } from "@material-ui/core";
@@ -38,6 +39,7 @@ function Home({ isAuthenticated, user, weather }) {
     <div className={classes.root}>
       <Box className={classes.paper}>
         <Typography variant="h5">Welcome {user}</Typography>
+        <WeatherIcon icon={"10n"} fill="black" />
       </Box>
       <Grid container spacing={0}>
         {weatherLoad ? (

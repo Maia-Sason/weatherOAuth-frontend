@@ -2,7 +2,7 @@ import { Paper, Box, Typography, SvgIcon } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import { blue, green, orange, red, yellow } from "@material-ui/core/colors";
 import { PaperBG } from "./PaperBG";
-import { ReactComponent as WeatherIcon } from "../icons/blizzard.svg";
+import WeatherIcon from "./WeatherIcon";
 
 const WeatherCard = ({ city, icon, farenheight, feelsLike, description }) => {
   const image = PaperBG(icon);
@@ -79,7 +79,7 @@ const WeatherCard = ({ city, icon, farenheight, feelsLike, description }) => {
               <Typography>{description}</Typography>
             </Box>
             <SvgIcon className={classes.weatherIcon}>
-              <WeatherIcon className={classes.weatherIcon} />
+              <WeatherIcon classType={classes.weatherIcon} icon={icon} />
             </SvgIcon>
           </Box>
           <Typography className={classes.cityName}>{city}</Typography>

@@ -5,7 +5,9 @@ import alt3 from "../images/alt3.jpg";
 import alt4 from "../images/alt4.jpg";
 import alt5 from "../images/alt5.jpg";
 import alt6 from "../images/alt6.jpg";
-import alt7 from "../images/alt7.jpg";
+import alt8 from "../images/alt7.jpg";
+import alt10 from "../images/alt10.jpg";
+import alt11 from "../images/alt11.jpg";
 import alt12 from "../images/alt12.jpg";
 
 export const PaperBG = (icon) => {
@@ -19,7 +21,7 @@ export const PaperBG = (icon) => {
     "03n" === icon ||
     "04n" === icon
   ) {
-    return alt1;
+    return alt11;
   }
 
   if ("01d" === icon) {
@@ -31,18 +33,18 @@ export const PaperBG = (icon) => {
   }
 
   if ("09d" === icon || "10d" === icon || "09n" === icon || "10n" === icon) {
-    return alt3;
+    return alt6;
   }
 
   if ("11d" === icon || "11n" === icon) {
-    return alt4;
+    return alt10;
   }
 
   if ("13d" === icon || "13n" === icon) {
-    return alt5;
+    return alt8;
   }
 
   if ("50d" === icon || "50n" === icon) {
-    return alt6;
+    return alt1;
   }
 };

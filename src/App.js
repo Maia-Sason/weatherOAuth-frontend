@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 // Component import
 import Layout from "./hoc/Layout";
 import Home from "./containers/Home";
+import HomeAlt from "./containers/HomeAlt";
 import Login from "./containers/Login";
 import All from "./containers/All.js";
 import Navbar from "./components/Navbar.js";
@@ -25,10 +26,10 @@ function App() {
     <Provider store={store}>
       <CssBaseline>
         <Router>
-          <Navbar />
+          {/* <Navbar /> */}
           <Layout>
             <Route exact path="/login" component={Login} />
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={HomeAlt} />
             <Route exact path="/all" component={All} />
           </Layout>
         </Router>
