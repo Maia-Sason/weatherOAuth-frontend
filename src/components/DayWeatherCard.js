@@ -21,9 +21,11 @@ const useStyles = makeStyles((theme) => ({
     fill: "white",
   },
   text: {
+    fontWeight: 200,
     fontSize: "2em",
   },
   day: {
+    fontWeight: 300,
     paddingTop: 5,
     paddingLeft: 3,
   },
@@ -37,13 +39,13 @@ const DayWeatherCard = ({ icon, temp, day }) => {
   return (
     <>
       <Paper className={classes.paper}>
-        <Typography className={classes.day}>{weekDay}</Typography>
         <Box className={classes.box}>
           <Typography className={classes.text}>{temp}&deg;</Typography>
           <Box className={classes.icon}>
             <WeatherIcon icon={icon}></WeatherIcon>
           </Box>
         </Box>
+        <Typography className={classes.day}>{weekDay}</Typography>
       </Paper>
     </>
   );

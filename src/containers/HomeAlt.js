@@ -9,7 +9,13 @@ import SideInfo from "../components/SideInfo";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AsideTemp from "../components/AsideTemp";
 import AsideWeather from "../components/AsideWeather";
+import SideGlass from "../components/SideGlass";
+import Greeting from "../components/Greeting";
+import MainTemp from "../components/MainTemp";
+import StickyBG from "../components/StickyBG";
 import Wave from "react-wavify";
+
+import alt12 from "../images/alt12.jpg";
 
 import {
   Typography,
@@ -22,6 +28,7 @@ import {
   Slide,
   Collapse,
   CircularProgress,
+  Button,
 } from "@material-ui/core";
 import WeatherBackground from "../components/WeatherBackground";
 
@@ -30,7 +37,6 @@ const HomeAlt = ({ isAuthenticated, user, weather }) => {
     root: {
       height: "100vh",
       flexGrow: 1,
-      overFlow: "hidden",
     },
     paper: {
       padding: theme.spacing(2),
@@ -40,6 +46,7 @@ const HomeAlt = ({ isAuthenticated, user, weather }) => {
     sidePaper: {
       height: "100vh",
       backgroundColor: "rgba(100, 100, 100, .15)",
+      overflowY: "scroll",
       backdropFilter: "blur(5px)",
       color: "white",
     },
@@ -91,6 +98,13 @@ const HomeAlt = ({ isAuthenticated, user, weather }) => {
       justifyContent: "center",
       alignItems: "center",
     },
+    image: {
+      height: "fit-content",
+      position: "fixed",
+      zIndex: -2,
+      bottom: 0,
+      height: "100vh",
+    },
     asideA: {
       color: "white",
 
@@ -98,9 +112,20 @@ const HomeAlt = ({ isAuthenticated, user, weather }) => {
       padding: "2px",
       marginTop: "10px",
     },
-    wave: {
-      postion: "absolute",
-      translate: "transform(50%, 50%)",
+    tempLocation: {
+      position: "absolute",
+      bottom: 10,
+      left: 10,
+    },
+    [theme.breakpoints.up("xs" | "sm")]: {
+      tempLocation: {
+        position: "relative",
+      },
+    },
+    [theme.breakpoints.up("md")]: {
+      tempLocation: {
+        position: "absolute",
+      },
     },
   }));
 
@@ -108,11 +133,13 @@ const HomeAlt = ({ isAuthenticated, user, weather }) => {
 
   const [load, setLoad] = useState(false);
   const [anim, setAnim] = useState(false);
+  const [menu, setMenu] = useState(false);
   useEffect(() => {
     if (weather.main.temp != undefined) {
       setLoad(true);
       console.log(weather.main.temp);
       setAnim(true);
+      setMenu(true);
     }
   }, [weather.main.temp]);
 
@@ -120,146 +147,97 @@ const HomeAlt = ({ isAuthenticated, user, weather }) => {
     return <Redirect push to="/login" />;
   }
 
+  const handleClick = () => {
+    setMenu(!menu);
+  };
+
   return (
     <>
       {load ? (
-        <WeatherBackground load={anim} icon={weather.weather.icon}>
-          <div className={classes.root}>
-            <Grid container spacing={0}>
-              <Grid item md={7} xs={12}>
-                <Grid container spacing={0} direction="column" justify="center">
-                  <Box>
-                    <Box className={classes.paper}>
-                      <Slide in={anim} {...(anim ? { timeout: 2000 } : {})}>
-                        <Typography className={classes.headerA}>
-                          <span className={classes.headerABG}>
-                            Hello {user}
-                          </span>
-                        </Typography>
-                      </Slide>
-                      <Fade in={anim} {...(anim ? { timeout: 2000 } : {})}>
-                        <ExitToAppIcon className={classes.asideA} />
-                      </Fade>
-                    </Box>
-                  </Box>
+        <div className={classes.root}>
+          <Grid container>
+            <Grid item md={7} sm={12}>
+              <Grid container direction="row" justifyContent="space-around">
+                <Grid item md={12} sm={12}>
                   <Box className={classes.paper}>
-                    <Grow in={anim} {...(anim ? { timeout: 3000 } : {})}>
-                      <Typography className={classes.headerB}>
-                        {weather.main.temp.toFixed(0)}&deg;
-                        <Typography className={classes.aside}>
-                          {weather.city}
-                        </Typography>
-                      </Typography>
-                    </Grow>
+                    <Slide in={anim} {...(anim ? { timeout: 2000 } : {})}>
+                      <Box>
+                        <Greeting name={user} />
+                        <Button
+                          onClick={handleClick}
+                          variant="contained"
+                        ></Button>
+                      </Box>
+                    </Slide>
+                    <Fade in={anim} {...(anim ? { timeout: 2000 } : {})}>
+                      <ExitToAppIcon className={classes.asideA} />
+                    </Fade>
                   </Box>
                 </Grid>
-              </Grid>
-              <Grid item md={5} xs={12}>
-                <Slide
-                  direction={"left"}
-                  in={anim}
-                  {...(anim ? { timeout: 5000 } : {})}
-                >
-                  <Paper className={classes.sidePaper} square>
-                    <Box>
-                      <Typography className={classes.headerC}>
-                        Today:
-                      </Typography>
-                      <AsideWeather></AsideWeather>
-                      <AsideTemp></AsideTemp>
-                      <AsideTemp></AsideTemp>
-                      <Grid container spacing={0} justify="center"></Grid>
-                    </Box>
-                    <Box>
-                      <Typography className={classes.headerC}>
-                        This Week,
-                      </Typography>
-                      <Grid
-                        container
-                        style={{ padding: "20px" }}
-                        justify="center"
-                      >
-                        {/* <Grid item xs={4}>
-                          <DayWeatherCard
-                            day={weather.days[1].day * 1000}
-                            icon={weather.days[1].icon}
-                            temp={weather.days[1].temp.toFixed(0)}
-                          />
-                        </Grid> */}
-                        <Grid item xs={6}>
-                          <DayWeatherCard
-                            day={weather.days[2].day * 1000}
-                            icon={weather.days[2].icon}
-                            temp={weather.days[2].temp.toFixed(0)}
-                          />
-                        </Grid>
-                        <Grid item xs={6}>
-                          <DayWeatherCard
-                            day={weather.days[3].day * 1000}
-                            icon={weather.days[3].icon}
-                            temp={weather.days[3].temp.toFixed(0)}
-                          />
-                        </Grid>
-                        <Grid item xs={6}>
-                          <DayWeatherCard
-                            day={weather.days[4].day * 1000}
-                            icon={weather.days[4].icon}
-                            temp={weather.days[4].temp.toFixed(0)}
-                          />
-                        </Grid>
-                        <Grid item xs={6}>
-                          <DayWeatherCard
-                            day={weather.days[5].day * 1000}
-                            icon={weather.days[5].icon}
-                            temp={weather.days[5].temp.toFixed(0)}
-                          />
-                        </Grid>
-                      </Grid>
-                    </Box>
-                  </Paper>
-                </Slide>
+
+                <Grid item md={12} sm={12} className={classes.tempLocation}>
+                  <Grow in={anim} {...(anim ? { timeout: 3000 } : {})}>
+                    <MainTemp
+                      temp={weather.main.temp}
+                      city={weather.city}
+                      icon={weather.weather.icon}
+                    />
+                  </Grow>
+                </Grid>
               </Grid>
             </Grid>
+            <Grid item md={5} sm={12}>
+              <Slide
+                direction={"left"}
+                in={menu}
+                out={menu}
+                {...(anim ? { timeout: 5000 } : {})}
+              >
+                <Box>
+                  <SideGlass
+                    days={weather.days}
+                    load={menu}
+                    rain={weather.precipitation}
+                    wind={weather.wind.speed}
+                    high={weather.main.temp_max}
+                    low={weather.main.temp_min}
+                    feels={weather.main.feels_like}
+                  />
+                </Box>
+              </Slide>
+            </Grid>
+          </Grid>
 
-            <Box className={classes.wave}>
-              <Wave
-                style={{
-                  position: "absolute",
-                  bottom: "10px",
-                  zIndex: "-1",
-                }}
-                fill="rgba(200, 200, 200, 0.297)"
-                paused={false}
-                options={{
-                  height: 10,
-                  amplitude: 40,
-                  speed: 0.13,
-                  points: 2,
-                }}
-              />
-              <Wave
-                style={{ position: "absolute", bottom: "10px", zIndex: "-1" }}
-                fill="rgba(100, 100, 100, 0.297)"
-                paused={false}
-                options={{
-                  height: 10,
-                  amplitude: 32,
-                  speed: 0.1,
-                  points: 2,
-                }}
-              />
-              <Box
-                style={{
-                  backgroundColor: "rgba(100, 100, 100, 0.32)",
-                  position: "absolute",
-                  width: "100%",
-                  bottom: 0,
-                  height: "15px",
-                }}
-              ></Box>
-            </Box>
-          </div>
-        </WeatherBackground>
+          <Box>
+            <Wave
+              style={{
+                position: "fixed",
+                bottom: "-10px",
+                zIndex: "-1",
+              }}
+              fill="rgba(200, 200, 200, 0.297)"
+              paused={false}
+              options={{
+                height: 10,
+                amplitude: 40,
+                speed: 0.13,
+                points: 2,
+              }}
+            />
+            <Wave
+              style={{ position: "fixed", bottom: "-10px", zIndex: "-1" }}
+              fill="rgba(100, 100, 100, 0.297)"
+              paused={false}
+              options={{
+                height: 10,
+                amplitude: 32,
+                speed: 0.1,
+                points: 2,
+              }}
+            />
+          </Box>
+          <StickyBG icon={weather.weather.icon} load={anim} />
+        </div>
       ) : (
         <Paper className={classes.paperLoad} square>
           <CircularProgress color="secondary" />

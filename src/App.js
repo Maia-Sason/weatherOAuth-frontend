@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 // Material-UI
-import { CssBaseline } from "@material-ui/core";
+import { CssBaseline, ThemeProvider, createMuiTheme } from "@material-ui/core";
 
 // Redux stuff
 import { Provider } from "react-redux";
@@ -21,19 +21,27 @@ import All from "./containers/All.js";
 import Navbar from "./components/Navbar.js";
 import Navbar_old from "./components/Navbar_old";
 
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: ["Trebuchet", "BlinkMacSystemFont"],
+  },
+});
+
 function App() {
   return (
     <Provider store={store}>
-      <CssBaseline>
-        <Router>
-          {/* <Navbar /> */}
-          <Layout>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/" component={HomeAlt} />
-            <Route exact path="/all" component={All} />
-          </Layout>
-        </Router>
-      </CssBaseline>
+      <ThemeProvider theme={theme}>
+        <CssBaseline>
+          <Router>
+            {/* <Navbar /> */}
+            <Layout>
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/" component={HomeAlt} />
+              <Route exact path="/all" component={All} />
+            </Layout>
+          </Router>
+        </CssBaseline>
+      </ThemeProvider>
     </Provider>
   );
 }

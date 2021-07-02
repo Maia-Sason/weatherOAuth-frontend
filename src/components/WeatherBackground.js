@@ -12,13 +12,14 @@ const WeatherBackground = ({ icon, children, load }) => {
       width: "100vw",
       backgroundSize: "cover",
       backgroundColor: "black",
+      backgroundAttachment: "scroll",
       borderRadius: 0,
-      position: "relative",
+      position: "fixed",
       zIndex: -1,
     },
     bgLoad: {
       backgroundColor: "black",
-      position: "relative",
+      position: "absolute",
       zIndex: -2,
     },
   }));
