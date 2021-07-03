@@ -1,21 +1,15 @@
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
-import WeatherCard from "../components/WeatherCard";
-import MiniWeather from "../components/MiniWeather";
-import WeatherIcon from "../components/WeatherIcon";
-import DayWeatherCard from "../components/DayWeatherCard";
-import SideInfo from "../components/SideInfo";
+import { logout } from "../actions/user";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import AsideTemp from "../components/AsideTemp";
-import AsideWeather from "../components/AsideWeather";
-import SideGlass from "../components/SideGlass";
-import Greeting from "../components/Greeting";
-import MainTemp from "../components/MainTemp";
-import StickyBG from "../components/StickyBG";
+import AsideTemp from "../components/AsideTemp/AsideTemp";
+import AsideWeather from "../components/AsideWeather/AsideWeather";
+import SideGlass from "../components/SideGlass/SideGlass";
+import Greeting from "../components/Greeting/Greeting";
+import MainTemp from "../components/MainTemp/MainTemp";
+import StickyBG from "../components/StickyBG/StickyBG";
 import Wave from "react-wavify";
-
-import alt12 from "../images/alt12.jpg";
 
 import {
   Typography,
@@ -26,13 +20,12 @@ import {
   Grow,
   Fade,
   Slide,
-  Collapse,
   CircularProgress,
   Button,
+  IconButton,
 } from "@material-ui/core";
-import WeatherBackground from "../components/WeatherBackground";
 
-const HomeAlt = ({ isAuthenticated, user, weather }) => {
+const HomeAlt = ({ logout, isAuthenticated, user, weather }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       height: "100vh",
@@ -41,54 +34,6 @@ const HomeAlt = ({ isAuthenticated, user, weather }) => {
     paper: {
       padding: theme.spacing(2),
       textAlign: "left",
-      //height: "50vh",
-    },
-    sidePaper: {
-      height: "100vh",
-      backgroundColor: "rgba(100, 100, 100, .15)",
-      overflowY: "scroll",
-      backdropFilter: "blur(5px)",
-      color: "white",
-    },
-    container: {
-      height: "100%",
-    },
-    headerA: {
-      fontSize: "2em",
-      color: "white",
-    },
-    headerABG: {
-      backgroundColor: "black",
-      padding: "10px",
-    },
-    headerB: {
-      position: "absolute",
-      bottom: 10,
-      left: 10,
-      paddingLeft: "10px",
-      fontSize: "7em",
-      fontWeight: 100,
-      color: "white",
-      letterSpacing: "5px",
-    },
-    headerBox: {
-      color: "white",
-    },
-    aside: {
-      display: "inline",
-      fontSize: "36px",
-      color: "white",
-      verticalAlign: "middle",
-      letterSpacing: "2px",
-    },
-    headerC: {
-      fontSize: "4em",
-      textAlign: "center",
-      letterSpacing: "3px",
-    },
-    smallGrid: {
-      width: "100%",
-      textAlign: "center",
     },
     paperLoad: {
       width: "100vw",
@@ -98,19 +43,11 @@ const HomeAlt = ({ isAuthenticated, user, weather }) => {
       justifyContent: "center",
       alignItems: "center",
     },
-    image: {
-      height: "fit-content",
-      position: "fixed",
-      zIndex: -2,
-      bottom: 0,
-      height: "100vh",
-    },
     asideA: {
       color: "white",
 
       backgroundColor: "black",
       padding: "2px",
-      marginTop: "10px",
     },
     tempLocation: {
       position: "absolute",
@@ -170,7 +107,9 @@ const HomeAlt = ({ isAuthenticated, user, weather }) => {
                       </Box>
                     </Slide>
                     <Fade in={anim} {...(anim ? { timeout: 2000 } : {})}>
-                      <ExitToAppIcon className={classes.asideA} />
+                      <IconButton onClick={logout}>
+                        <ExitToAppIcon className={classes.asideA} />
+                      </IconButton>
                     </Fade>
                   </Box>
                 </Grid>
@@ -253,4 +192,4 @@ const mapStatetoProps = (state) => ({
   weather: state.weather,
 });
 
-export default connect(mapStatetoProps)(HomeAlt);
+export default connect(mapStatetoProps, { logout })(HomeAlt);

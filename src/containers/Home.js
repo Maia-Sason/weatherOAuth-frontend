@@ -2,10 +2,10 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import WeatherCard from "../components/WeatherCard";
-import MiniWeather from "../components/MiniWeather";
+import MiniWeather from "../components/Trash/MiniWeather";
 import WeatherIcon from "../components/WeatherIcon";
 import WeatherCardLoad from "../components/WeatherCardLoad";
-import SideInfo from "../components/SideInfo";
+import SideInfo from "../components/Trash/SideInfo";
 import { Typography, Grid, Box, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({

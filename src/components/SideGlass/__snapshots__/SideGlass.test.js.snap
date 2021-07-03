@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SideGlass /> matches snapshot 1`] = `
+<div>
+  <div
+    class="MuiPaper-root makeStyles-sidePaper-1 MuiPaper-elevation1"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-4"
+    >
+      <p
+        class="MuiTypography-root makeStyles-headerC-2 MuiTypography-body1"
+      >
+        Today,
+      </p>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-center"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8"
+        >
+          <div
+            class="MuiPaper-root makeStyles-container-5 MuiPaper-elevation10 MuiPaper-rounded"
+          >
+            <div
+              class="MuiBox-root MuiBox-root-12 makeStyles-headerBox-6"
+            >
+              <p
+                class="MuiTypography-root makeStyles-header-7 MuiTypography-body1"
+              >
+                Feels Like:
+              </p>
+              <p
+                class="MuiTypography-root makeStyles-header-7 MuiTypography-body1"
+              >
+                99
+                °
+              </p>
+            </div>
+            <hr
+              class="MuiDivider-root"
+            />
+            <div
+              class="MuiBox-root MuiBox-root-13 makeStyles-precipitation-10"
+            >
+              <svg
+                class="makeStyles-rainDrop-9"
+              >
+                drop-percentage.svg
+              </svg>
+              <p
+                class="MuiTypography-root makeStyles-headerB-8 MuiTypography-body1"
+              >
+                30
+                %
+              </p>
+            </div>
+            <hr
+              class="MuiDivider-root"
+            />
+            <div
+              class="MuiBox-root MuiBox-root-14 makeStyles-wind-11"
+            >
+              <svg
+                class="makeStyles-rainDrop-9"
+              >
+                wind-2.svg
+              </svg>
+              <p
+                class="MuiTypography-root makeStyles-headerB-8 MuiTypography-body1"
+              >
+                13
+                mph
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-flex-start MuiGrid-justify-xs-space-between"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-16"
+          >
+            <p
+              class="MuiTypography-root makeStyles-text-15 MuiTypography-body1"
+            >
+              High
+               
+              100
+              °
+            </p>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-17"
+          >
+            <p
+              class="MuiTypography-root makeStyles-text-15 MuiTypography-body1"
+            >
+              Low
+               
+              68
+              °
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr
+      class="MuiDivider-root"
+    />
+    <div
+      class="MuiBox-root MuiBox-root-18"
+    >
+      <p
+        class="MuiTypography-root makeStyles-headerC-2 MuiTypography-body1"
+      >
+        This Week,
+      </p>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-center"
+        style="padding: 20px;"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+          style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+        >
+          <div
+            class="MuiPaper-root makeStyles-paper-19 MuiPaper-elevation10 MuiPaper-rounded"
+          >
+            <div
+              class="MuiBox-root MuiBox-root-24 makeStyles-box-20"
+            >
+              <p
+                class="MuiTypography-root makeStyles-text-22 MuiTypography-body1"
+              >
+                59
+                °
+              </p>
+              <div
+                class="MuiBox-root MuiBox-root-25 makeStyles-icon-21"
+              >
+                <svg>
+                  rain-day.svg
+                </svg>
+              </div>
+            </div>
+            <p
+              class="MuiTypography-root makeStyles-day-23 MuiTypography-body1"
+            >
+              Saturday
+            </p>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+          style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+        >
+          <div
+            class="MuiPaper-root makeStyles-paper-19 MuiPaper-elevation10 MuiPaper-rounded"
+          >
+            <div
+              class="MuiBox-root MuiBox-root-26 makeStyles-box-20"
+            >
+              <p
+                class="MuiTypography-root makeStyles-text-22 MuiTypography-body1"
+              >
+                70
+                °
+              </p>
+              <div
+                class="MuiBox-root MuiBox-root-27 makeStyles-icon-21"
+              >
+                <svg>
+                  rain-day.svg
+                </svg>
+              </div>
+            </div>
+            <p
+              class="MuiTypography-root makeStyles-day-23 MuiTypography-body1"
+            >
+              Sunday
+            </p>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+          style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+        >
+          <div
+            class="MuiPaper-root makeStyles-paper-19 MuiPaper-elevation10 MuiPaper-rounded"
+          >
+            <div
+              class="MuiBox-root MuiBox-root-28 makeStyles-box-20"
+            >
+              <p
+                class="MuiTypography-root makeStyles-text-22 MuiTypography-body1"
+              >
+                77
+                °
+              </p>
+              <div
+                class="MuiBox-root MuiBox-root-29 makeStyles-icon-21"
+              >
+                <svg>
+                  mostly-cloudy-2.svg
+                </svg>
+              </div>
+            </div>
+            <p
+              class="MuiTypography-root makeStyles-day-23 MuiTypography-body1"
+            >
+              Monday
+            </p>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+          style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+        >
+          <div
+            class="MuiPaper-root makeStyles-paper-19 MuiPaper-elevation10 MuiPaper-rounded"
+          >
+            <div
+              class="MuiBox-root MuiBox-root-30 makeStyles-box-20"
+            >
+              <p
+                class="MuiTypography-root makeStyles-text-22 MuiTypography-body1"
+              >
+                85
+                °
+              </p>
+              <div
+                class="MuiBox-root MuiBox-root-31 makeStyles-icon-21"
+              >
+                <svg>
+                  sun-1.svg
+                </svg>
+              </div>
+            </div>
+            <p
+              class="MuiTypography-root makeStyles-day-23 MuiTypography-body1"
+            >
+              Tuesday
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

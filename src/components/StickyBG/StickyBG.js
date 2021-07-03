@@ -1,5 +1,5 @@
 import { Box, makeStyles, Fade, Grow } from "@material-ui/core";
-import { PaperBG } from "./PaperBG";
+import { PaperBG } from "../PaperBG";
 
 const StickyBG = ({ icon, load }) => {
   const image = PaperBG(icon);
@@ -12,7 +12,6 @@ const StickyBG = ({ icon, load }) => {
       backgroundColor: "black",
       position: "fixed",
       top: 0,
-      height: "100vh",
     },
     container: {
       backgroundColor: "black",
@@ -30,8 +29,7 @@ const StickyBG = ({ icon, load }) => {
   return (
     <>
       <Box className={classes.container}>
-        fdassdf
-        <Fade in={load} {...(load ? { setTimeout: 10000 } : {})}>
+        <Fade in={load} {...(load ? { settimeout: 10000 } : {})}>
           <Box className={classes.background}></Box>
         </Fade>
       </Box>

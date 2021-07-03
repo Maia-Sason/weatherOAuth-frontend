@@ -14,12 +14,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Component import
 import Layout from "./hoc/Layout";
-import Home from "./containers/Home";
 import HomeAlt from "./containers/HomeAlt";
 import Login from "./containers/Login";
 import All from "./containers/All.js";
-import Navbar from "./components/Navbar.js";
-import Navbar_old from "./components/Navbar_old";
 
 const theme = createMuiTheme({
   typography: {

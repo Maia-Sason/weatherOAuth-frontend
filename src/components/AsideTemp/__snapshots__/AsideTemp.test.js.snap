@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AsideTemp /> matches snapshot 1`] = `
+<div>
+  <div
+    class="MuiBox-root MuiBox-root-2"
+  >
+    <p
+      class="MuiTypography-root makeStyles-text-1 MuiTypography-body1"
+    >
+      Some text
+       
+      67
+      °
+    </p>
+  </div>
+</div>
+`;

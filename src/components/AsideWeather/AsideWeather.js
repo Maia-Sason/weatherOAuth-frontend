@@ -1,6 +1,6 @@
 import { Paper, Typography, Divider, makeStyles, Box } from "@material-ui/core";
-import { ReactComponent as DropPercentage } from "../icons/drop-percentage.svg";
-import { ReactComponent as Wind } from "../icons/wind-2.svg";
+import { ReactComponent as DropPercentage } from "../../icons/drop-percentage.svg";
+import { ReactComponent as Wind } from "../../icons/wind-2.svg";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -50,7 +50,7 @@ const AsideWeather = ({ feels, rain, wind }) => {
 
   return (
     <>
-      <Paper className={classes.container}>
+      <Paper elevation={10} className={classes.container}>
         <Box className={classes.headerBox}>
           <Typography className={classes.header}>Feels Like:</Typography>
           <Typography className={classes.header}>{feels}&deg;</Typography>

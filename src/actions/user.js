@@ -82,3 +82,20 @@ export const loadUser = () => async (dispatch) => {
     });
   }
 };
+
+export const logout = () => async (dispatch) => {
+  try {
+    const config = {
+      credentials: "include",
+    };
+    const res = await axios.get(`/logout`, config);
+
+    dispatch({
+      type: LOGOUT_SUCCESS,
+    });
+  } catch (err) {
+    dispatch({
+      type: LOGOUT_FAIL,
+    });
+  }
+};

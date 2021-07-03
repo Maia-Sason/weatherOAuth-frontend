@@ -1,5 +1,5 @@
 import { Paper, Box, Typography, SvgIcon, makeStyles } from "@material-ui/core";
-import WeatherIcon from "./WeatherIcon";
+import WeatherIcon from "../WeatherIcon";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,7 +38,7 @@ const DayWeatherCard = ({ icon, temp, day }) => {
   const weekDay = new Intl.DateTimeFormat("en-US", options).format(day);
   return (
     <>
-      <Paper className={classes.paper}>
+      <Paper elevation={10} className={classes.paper}>
         <Box className={classes.box}>
           <Typography className={classes.text}>{temp}&deg;</Typography>
           <Box className={classes.icon}>

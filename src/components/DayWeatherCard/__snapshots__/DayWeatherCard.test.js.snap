@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches snapshot 1`] = `
+<div>
+  <div
+    class="MuiPaper-root makeStyles-paper-1 MuiPaper-elevation10 MuiPaper-rounded"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-6 makeStyles-box-2"
+    >
+      <p
+        class="MuiTypography-root makeStyles-text-4 MuiTypography-body1"
+      >
+        °
+      </p>
+      <div
+        class="MuiBox-root MuiBox-root-7 makeStyles-icon-3"
+      />
+    </div>
+    <p
+      class="MuiTypography-root makeStyles-day-5 MuiTypography-body1"
+    >
+      Friday
+    </p>
+  </div>
+</div>
+`;

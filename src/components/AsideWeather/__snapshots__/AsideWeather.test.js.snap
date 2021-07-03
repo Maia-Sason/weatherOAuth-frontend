@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AsideWeather/> matches snapshot 1`] = `
+<div>
+  <div
+    class="MuiPaper-root makeStyles-container-1 MuiPaper-elevation10 MuiPaper-rounded"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-8 makeStyles-headerBox-2"
+    >
+      <p
+        class="MuiTypography-root makeStyles-header-3 MuiTypography-body1"
+      >
+        Feels Like:
+      </p>
+      <p
+        class="MuiTypography-root makeStyles-header-3 MuiTypography-body1"
+      >
+        °
+      </p>
+    </div>
+    <hr
+      class="MuiDivider-root"
+    />
+    <div
+      class="MuiBox-root MuiBox-root-9 makeStyles-precipitation-6"
+    >
+      <svg
+        class="makeStyles-rainDrop-5"
+      >
+        drop-percentage.svg
+      </svg>
+      <p
+        class="MuiTypography-root makeStyles-headerB-4 MuiTypography-body1"
+      >
+        NaN
+        %
+      </p>
+    </div>
+    <hr
+      class="MuiDivider-root"
+    />
+    <div
+      class="MuiBox-root MuiBox-root-10 makeStyles-wind-7"
+    >
+      <svg
+        class="makeStyles-rainDrop-5"
+      >
+        wind-2.svg
+      </svg>
+      <p
+        class="MuiTypography-root makeStyles-headerB-4 MuiTypography-body1"
+      >
+        mph
+      </p>
+    </div>
+  </div>
+</div>
+`;

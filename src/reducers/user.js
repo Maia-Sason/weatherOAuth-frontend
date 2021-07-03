@@ -20,6 +20,7 @@ const initState = {
   picture: "",
   isAuthenticated: false,
   error: "",
+  locations: [],
 };
 
 export default function (state = initState, action) {
@@ -37,6 +38,7 @@ export default function (state = initState, action) {
         ...state,
         name: payload.firstName,
         picture: payload.picture,
+        locations: payload.locations,
       };
     case GET_LOCATION_SUCCESS:
       return {
@@ -50,6 +52,11 @@ export default function (state = initState, action) {
         ...state,
         error: payload,
       };
+    case LOGOUT_SUCCESS:
+      return {
+        state: initState,
+      };
+    case LOGOUT_FAIL:
     case AUTHENTICATE_FAIL:
     case USER_FAIL:
     default:

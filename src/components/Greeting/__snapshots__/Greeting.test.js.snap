@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Greeting /> matches snapshot 1`] = `
+<div>
+  <p
+    class="MuiTypography-root makeStyles-headerA-1 MuiTypography-body1"
+  >
+    <span
+      class="makeStyles-headerABG-2"
+    >
+      Hello 
+      Billy
+    </span>
+  </p>
+</div>
+`;
