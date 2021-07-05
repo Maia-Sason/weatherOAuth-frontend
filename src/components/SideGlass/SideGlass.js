@@ -1,5 +1,7 @@
 import {
   makeStyles,
+  withStyles,
+  useTheme,
   Paper,
   Box,
   Grid,
@@ -10,11 +12,15 @@ import {
   Tab,
   Grow,
 } from "@material-ui/core";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import AsideWeather from "../AsideWeather/AsideWeather";
 import AsideTemp from "../AsideTemp/AsideTemp";
 import DayWeatherCard from "../DayWeatherCard/DayWeatherCard";
-import { TabPanel, TabContext } from "@material-ui/lab";
+import { TabContext } from "@material-ui/lab";
+import SwipeableViews from "react-swipeable-views";
+import TabPanel from "../TabPanel.js";
+import LocationWeather from "../LocationWeather";
 
 const useStyles = makeStyles((theme) => ({
   sidePaper: {
@@ -30,35 +36,85 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     letterSpacing: "3px",
     fontWeight: "100",
+    whiteSpace: "nowrap",
   },
   lowHigh: {
     display: "flex",
     justify: "space-between",
   },
+  tabs: {
+    position: "relative",
+    bottom: 0,
+  },
 }));
 
-const SideGlass = ({ days, load, rain, wind, high, low, feels }) => {
-  const [anim, setLoad] = useState(false);
+const StyledTab = withStyles((theme) => ({
+  root: {
+    color: "white",
+  },
+}))((props) => <Tab {...props} />);
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+const SideGlass = ({ days, rain, wind, high, low, feels, allWeather }) => {
+  const [anim, setAnim] = useState(false);
+  const [load, setLoad] = useState(false);
+  const [allWeatherList, setAllWeather] = useState([]);
   const [value, setValue] = useState(0);
+  const theme = useTheme();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  useState(() => {
-    setTimeout(function () {
+  const handleChangeIndex = (index) => {
+    setValue(index);
+  };
+
+  useEffect(async () => {
+    console.log("ALL WEATHER");
+    console.log(allWeather);
+
+    console.log("ALL WEATHER");
+    console.log(allWeather);
+    await makeWeatherList();
+
+    setAnim(true);
+  }, [allWeather]);
+
+  useEffect(() => {
+    console.log(allWeatherList);
+    if (allWeatherList !== []) {
       setLoad(true);
-    }, 2000);
-  }, [load]);
+    }
+  }, [allWeatherList]);
 
-  // function a11yProps(index) {
-  //   return {
-  //     id: `simple-tab-${index}`,
-  //     "aria-controls": `simple-tabpanel-${index}`,
-  //   };
-  // }
+  const makeWeatherList = async () => {
+    console.log("MAP WEATHER");
+    console.log(allWeather);
+    await setAllWeather(
+      allWeather.map((item, k) => {
+        const num = 1000 + 1000 * k;
+        return (
+          <Grow key={k} in={true} {...{ timeout: num }}>
+            <Grid item xs={12} key={k}>
+              <LocationWeather
+                city={item.name}
+                temp={item.main.temp.toFixed(0)}
+                icon={item.weather[0].icon}
+              />
+            </Grid>
+          </Grow>
+        );
+      })
+    );
+  };
 
-  console.log(days);
   const weatherCardList = days.slice(1).map((item, k) => {
     const num = 1000 + 1000 * k;
     return (
@@ -79,8 +135,24 @@ const SideGlass = ({ days, load, rain, wind, high, low, feels }) => {
 
   return (
     <>
-      <TabContext value={value}>
-        <Paper className={classes.sidePaper} square>
+      <Paper className={classes.sidePaper} square>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="fullWidth"
+          indicatorColor="secondary"
+          textColor="secondary"
+          className={classes.tabs}
+        >
+          <StyledTab label="Item One" {...a11yProps(0)} />
+          <StyledTab label="Item Two" {...a11yProps(1)} />
+        </Tabs>
+
+        <SwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          index={value}
+          onChangeIndex={handleChangeIndex}
+        >
           <TabPanel value={value} index={0}>
             <Box>
               <Typography className={classes.headerC}>Today,</Typography>
@@ -115,23 +187,23 @@ const SideGlass = ({ days, load, rain, wind, high, low, feels }) => {
               </Grid>
             </Box>
           </TabPanel>
-          <TabPanel value={value} index={1}>
-            <Typography className={classes.headerC}>Second Tab</Typography>
-          </TabPanel>
-          <Paper>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
+          <TabPanel value={value} index={1} dir={"left"}>
+            <Grid
+              container
+              style={{ padding: "20px" }}
+              justify="center"
+              alignContent="stretch"
             >
-              <Tab label="Current" value={0}></Tab>
-              <Tab label="All" value={1}></Tab>
-            </Tabs>
-          </Paper>
-        </Paper>
-      </TabContext>
+              <Typography className={classes.headerC}>
+                Location History,
+              </Typography>
+
+              {/* {weatherCardList} */}
+              {load ? allWeatherList : <p>Loading</p>}
+            </Grid>
+          </TabPanel>
+        </SwipeableViews>
+      </Paper>
     </>
   );
 };

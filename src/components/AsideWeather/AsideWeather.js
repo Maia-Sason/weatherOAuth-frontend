@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     background: "none",
     padding: "10px",
-    //minHeight: "40vh",
     margin: "20px",
   },
   headerBox: {
@@ -58,7 +57,9 @@ const AsideWeather = ({ feels, rain, wind }) => {
         <Divider />
         <Box className={classes.precipitation}>
           <DropPercentage className={classes.rainDrop} />
-          <Typography className={classes.headerB}>{rain * 100}%</Typography>
+          <Typography className={classes.headerB}>
+            {(rain * 100).toFixed(0)}%
+          </Typography>
         </Box>
         <Divider />
         <Box className={classes.wind}>

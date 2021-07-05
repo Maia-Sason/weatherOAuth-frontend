@@ -6,7 +6,7 @@ const TabPanel = ({ children, value, index }) => {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
     >
-      {value === index && { children }}
+      {value === index && children}
     </div>
   );
 };

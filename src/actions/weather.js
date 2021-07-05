@@ -1,5 +1,10 @@
 import axios from "axios";
-import { GET_GEO_WEATHER_SUCCESS, GET_GEO_WEATHER_FAIL } from "./types";
+import {
+  GET_GEO_WEATHER_SUCCESS,
+  GET_GEO_WEATHER_FAIL,
+  GET_ALL_WEATHER_SUCCESS,
+  GET_ALL_WEATHER_FAIL,
+} from "./types";
 
 export const getUserWeather = (longitude, latitude) => async (dispatch) => {
   const config = {
@@ -35,4 +40,30 @@ export const getUserWeather = (longitude, latitude) => async (dispatch) => {
   }
 };
 
-export const getAllWeather = () => async (dispatch) => {};
+export const getAllWeather = () => async (dispatch) => {
+  const config = {
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "content-type": "application/json",
+    },
+  };
+
+  try {
+    const res = await axios.get("/all", config);
+    if (res.data.error) {
+      dispatch({
+        type: GET_ALL_WEATHER_FAIL,
+      });
+    } else {
+      dispatch({
+        type: GET_ALL_WEATHER_SUCCESS,
+        payload: res.data,
+      });
+    }
+  } catch (err) {
+    dispatch({
+      type: GET_ALL_WEATHER_FAIL,
+    });
+  }
+};

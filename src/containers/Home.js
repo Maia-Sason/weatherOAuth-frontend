@@ -48,7 +48,7 @@ function Home({ isAuthenticated, user, weather }) {
               <Box className={classes.paper} position="relative">
                 <WeatherCard
                   farenheight={weather.main.temp}
-                  feelsLike={weather.main.feels_like}
+                  feelsLike={0.14}
                   description={weather.weather.description}
                   city={weather.city}
                   icon={weather.weather.icon}

@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { logout } from "../actions/user";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import MenuIcon from "@material-ui/icons/Menu";
 import AsideTemp from "../components/AsideTemp/AsideTemp";
 import AsideWeather from "../components/AsideWeather/AsideWeather";
 import SideGlass from "../components/SideGlass/SideGlass";
@@ -25,7 +26,7 @@ import {
   IconButton,
 } from "@material-ui/core";
 
-const HomeAlt = ({ logout, isAuthenticated, user, weather }) => {
+const HomeAlt = ({ logout, isAuthenticated, user, weather, allWeather }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       height: "100vh",
@@ -43,10 +44,15 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather }) => {
       justifyContent: "center",
       alignItems: "center",
     },
-    asideA: {
+    header: {
+      display: "flex",
+    },
+    iconButton: {
       color: "white",
-
+      border: "solid 2px white",
       backgroundColor: "black",
+      height: "30px",
+      width: "30px",
       padding: "2px",
     },
     tempLocation: {
@@ -69,14 +75,20 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather }) => {
   const classes = useStyles();
 
   const [load, setLoad] = useState(false);
+  const [temp, setTemp] = useState(false);
   const [anim, setAnim] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [test, setTest] = useState("");
+
   useEffect(() => {
-    if (weather.main.temp != undefined) {
+    if (weather.main.temp !== undefined && weather.allLocations !== undefined) {
+      setTest(weather.main.temp);
       setLoad(true);
       console.log(weather.main.temp);
       setAnim(true);
+      setTemp(true);
       setMenu(true);
+      console.log(allWeather);
     }
   }, [weather.main.temp]);
 
@@ -93,31 +105,31 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather }) => {
       {load ? (
         <div className={classes.root}>
           <Grid container>
-            <Grid item md={7} sm={12}>
+            <Grid item lg={7} md={5} sm={12}>
               <Grid container direction="row" justifyContent="space-around">
                 <Grid item md={12} sm={12}>
                   <Box className={classes.paper}>
                     <Slide in={anim} {...(anim ? { timeout: 2000 } : {})}>
-                      <Box>
+                      <Box className={classes.header}>
                         <Greeting name={user} />
-                        <Button
-                          onClick={handleClick}
-                          variant="contained"
-                        ></Button>
                       </Box>
                     </Slide>
                     <Fade in={anim} {...(anim ? { timeout: 2000 } : {})}>
                       <IconButton onClick={logout}>
-                        <ExitToAppIcon className={classes.asideA} />
+                        <ExitToAppIcon className={classes.iconButton} />
                       </IconButton>
                     </Fade>
                   </Box>
                 </Grid>
 
                 <Grid item md={12} sm={12} className={classes.tempLocation}>
-                  <Grow in={anim} {...(anim ? { timeout: 3000 } : {})}>
+                  <Grow
+                    in={temp}
+                    out={temp}
+                    {...(temp ? { timeout: 3000 } : {})}
+                  >
                     <MainTemp
-                      temp={weather.main.temp}
+                      temp={test}
                       city={weather.city}
                       icon={weather.weather.icon}
                     />
@@ -125,7 +137,14 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather }) => {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item md={5} sm={12}>
+            <Grid item lg={5} md={7} sm={12}>
+              <Grid container justify="flex-end">
+                <Grid item xs={2}>
+                  <IconButton onClick={handleClick} variant="contained">
+                    <MenuIcon className={classes.iconButton}></MenuIcon>
+                  </IconButton>
+                </Grid>
+              </Grid>
               <Slide
                 direction={"left"}
                 in={menu}
@@ -134,6 +153,7 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather }) => {
               >
                 <Box>
                   <SideGlass
+                    allWeather={allWeather}
                     days={weather.days}
                     load={menu}
                     rain={weather.precipitation}
@@ -188,6 +208,7 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather }) => {
 
 const mapStatetoProps = (state) => ({
   isAuthenticated: state.user.isAuthenticated,
+  allWeather: state.weather.allLocations,
   user: state.user.name,
   weather: state.weather,
 });

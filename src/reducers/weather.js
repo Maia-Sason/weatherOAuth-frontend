@@ -1,6 +1,8 @@
 import {
   GET_GEO_WEATHER_SUCCESS,
   GET_GEO_WEATHER_FAIL,
+  GET_ALL_WEATHER_SUCCESS,
+  GET_ALL_WEATHER_FAIL,
 } from "../actions/types.js";
 
 const initState = {
@@ -13,6 +15,7 @@ const initState = {
   country: "",
   sunrise: "",
   sunset: "",
+  allLocations: [],
   days: [
     {
       temp: "",
@@ -40,6 +43,7 @@ export default function (state = initState, action) {
   switch (type) {
     case GET_GEO_WEATHER_SUCCESS:
       return {
+        ...state,
         weather: payload.list[0].weather[0],
         main: payload.list[0].main,
         visibility: payload.list[0].visibility,
@@ -82,6 +86,12 @@ export default function (state = initState, action) {
           },
         ],
       };
+    case GET_ALL_WEATHER_SUCCESS:
+      return {
+        ...state,
+        allLocations: payload,
+      };
+    case GET_ALL_WEATHER_FAIL:
     case GET_GEO_WEATHER_FAIL:
     default:
       return state;
