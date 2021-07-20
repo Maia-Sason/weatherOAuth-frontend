@@ -6,6 +6,8 @@ import {
   GET_ALL_WEATHER_FAIL,
 } from "./types";
 
+const location = "https://weatherlocation.herokuapp.com";
+
 export const getUserWeather = (longitude, latitude) => async (dispatch) => {
   const config = {
     credentials: "include",
@@ -21,7 +23,7 @@ export const getUserWeather = (longitude, latitude) => async (dispatch) => {
   });
 
   try {
-    const res = await axios.post("/weather", body, config);
+    const res = await axios.post(`${location}/api/weather`, body, config);
     if (res.data.error) {
       dispatch({
         type: GET_GEO_WEATHER_FAIL,
@@ -50,7 +52,7 @@ export const getAllWeather = () => async (dispatch) => {
   };
 
   try {
-    const res = await axios.get("/all", config);
+    const res = await axios.get(`${location}/api/all`, config);
     if (res.data.error) {
       dispatch({
         type: GET_ALL_WEATHER_FAIL,

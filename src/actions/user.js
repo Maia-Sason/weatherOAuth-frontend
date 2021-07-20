@@ -10,16 +10,15 @@ import {
   USER_FAIL,
 } from "./types";
 
+const location = "https://weatherlocation.herokuapp.com";
+
 export const loginFacebook = () => {
-  window.open(
-    `https://weatherlocation.herokuapp.com/api/login/facebook`,
-    "_self"
-  );
+  window.open(`${location}/api/login/facebook`, "_self");
 };
 
 export const login = () => async (dispatch) => {
   try {
-    const res = await axios.get(`/login/facebook`);
+    const res = await axios.get(`${location}/api/login/facebook`);
     if (res.data.error) {
       dispatch({
         type: LOGIN_FAIL,
@@ -42,7 +41,7 @@ export const checkAuthenticated = () => async (dispatch) => {
   };
 
   try {
-    const res = await axios.get(`/auth`, config);
+    const res = await axios.get(`${location}/api/auth`, config);
     if (res.data.error) {
       dispatch({
         type: AUTHENTICATE_FAIL,
@@ -68,7 +67,7 @@ export const loadUser = () => async (dispatch) => {
       credentials: "include",
     };
 
-    const res = await axios.get(`/user`, config);
+    const res = await axios.get(`${location}/api/user`, config);
     if (res.data.error) {
       dispatch({
         type: USER_FAIL,
@@ -91,7 +90,7 @@ export const logout = () => async (dispatch) => {
     const config = {
       credentials: "include",
     };
-    const res = await axios.get(`/logout`, config);
+    const res = await axios.get(`${location}/api/logout`, config);
 
     dispatch({
       type: LOGOUT_SUCCESS,

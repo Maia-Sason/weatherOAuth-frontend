@@ -20,7 +20,7 @@ import All from "./containers/All.js";
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: ["Trebuchet", "BlinkMacSystemFont"],
+    fontFamily: ["-apple-system", "Trebuchet", "BlinkMacSystemFont"],
   },
 });
 
@@ -30,7 +30,6 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <Router>
-            {/* <Navbar /> */}
             <Layout>
               <Route exact path="/login" component={Login} />
               <Route exact path="/" component={HomeAlt} />

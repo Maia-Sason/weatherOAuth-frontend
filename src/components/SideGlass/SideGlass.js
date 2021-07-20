@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     letterSpacing: "3px",
     fontWeight: "100",
-    whiteSpace: "nowrap",
   },
   lowHigh: {
     display: "flex",

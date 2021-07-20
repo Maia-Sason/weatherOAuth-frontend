@@ -6,6 +6,8 @@ import {
   GET_GEO_WEATHER_FAIL,
 } from "./types";
 
+const location = "https://weatherlocation.herokuapp.com";
+
 export const getLocationFromMem = () => async (dispatch) => {
   const latitude = localStorage.getItem("latitude");
   const longitude = localStorage.getItem("longitude");
@@ -41,7 +43,7 @@ export const getUserLocation = () => async (dispatch) => {
       lat: latitude,
       long: longitude,
     });
-    axios.post("/location", body, config);
+    axios.post(`${location}/api/location`, body, config);
     dispatch({
       type: GET_LOCATION_SUCCESS,
       payload: [latitude, longitude],
