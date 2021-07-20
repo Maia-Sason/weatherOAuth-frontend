@@ -24,7 +24,7 @@ import LocationWeather from "../LocationWeather";
 
 const useStyles = makeStyles((theme) => ({
   sidePaper: {
-    height: "100vh",
+    height: "95vh",
     backgroundColor: "rgba(100, 100, 100, .15)",
     overflowY: "scroll",
     backdropFilter: "blur(5px)",
@@ -144,8 +144,8 @@ const SideGlass = ({ days, rain, wind, high, low, feels, allWeather }) => {
           textColor="secondary"
           className={classes.tabs}
         >
-          <StyledTab label="Item One" {...a11yProps(0)} />
-          <StyledTab label="Item Two" {...a11yProps(1)} />
+          <StyledTab label="Current" {...a11yProps(0)} />
+          <StyledTab label="All" {...a11yProps(1)} />
         </Tabs>
 
         <SwipeableViews
@@ -155,7 +155,7 @@ const SideGlass = ({ days, rain, wind, high, low, feels, allWeather }) => {
         >
           <TabPanel value={value} index={0}>
             <Box>
-              <Typography className={classes.headerC}>Today,</Typography>
+              <Typography className={classes.headerC}>Today</Typography>
               <Grid container justify={"center"}>
                 <Grid item xs={8}>
                   <AsideWeather
@@ -181,7 +181,7 @@ const SideGlass = ({ days, rain, wind, high, low, feels, allWeather }) => {
             </Box>
             <Divider></Divider>
             <Box>
-              <Typography className={classes.headerC}>This Week,</Typography>
+              <Typography className={classes.headerC}>This Week</Typography>
               <Grid container style={{ padding: "20px" }} justify="center">
                 {weatherCardList}
               </Grid>
@@ -195,7 +195,7 @@ const SideGlass = ({ days, rain, wind, high, low, feels, allWeather }) => {
               alignContent="stretch"
             >
               <Typography className={classes.headerC}>
-                Location History,
+                Location History
               </Typography>
 
               {/* {weatherCardList} */}

@@ -27,8 +27,9 @@ function Layout({
     setCounter(counter + 1);
     if (isAuthenticated) {
       await loadUser();
-      await getAllWeather();
       await getUserLocation();
+      await getUserWeather();
+
       console.log(counter);
     }
   }, 3600000);
