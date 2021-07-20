@@ -11,7 +11,10 @@ import {
 } from "./types";
 
 export const loginFacebook = () => {
-  window.open(`http://localhost:3003/api/login/facebook`, "_self");
+  window.open(
+    `https://weatherlocation.herokuapp.com/api/login/facebook`,
+    "_self"
+  );
 };
 
 export const login = () => async (dispatch) => {
