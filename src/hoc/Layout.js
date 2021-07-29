@@ -29,8 +29,6 @@ function Layout({
       await loadUser();
       await getUserLocation();
       await getUserWeather();
-
-      console.log(counter);
     }
   }, 3600000);
 
@@ -50,7 +48,6 @@ function Layout({
 
   useEffect(async () => {
     if (isAuthenticated && longitude != undefined && latitude != undefined) {
-      console.log("location is...:" + longitude, latitude);
       await getUserWeather(longitude, latitude);
     }
     setLoading(true);

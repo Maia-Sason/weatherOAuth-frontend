@@ -84,11 +84,9 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather, allWeather }) => {
     if (weather.main.temp !== undefined && weather.allLocations !== undefined) {
       setTest(weather.main.temp);
       setLoad(true);
-      console.log(weather.main.temp);
       setAnim(true);
       setTemp(true);
       setMenu(true);
-      console.log(allWeather);
     }
   }, [weather.main.temp]);
 

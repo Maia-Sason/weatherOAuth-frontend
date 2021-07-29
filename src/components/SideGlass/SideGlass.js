@@ -76,26 +76,18 @@ const SideGlass = ({ days, rain, wind, high, low, feels, allWeather }) => {
   };
 
   useEffect(async () => {
-    console.log("ALL WEATHER");
-    console.log(allWeather);
-
-    console.log("ALL WEATHER");
-    console.log(allWeather);
     await makeWeatherList();
 
     setAnim(true);
   }, [allWeather]);
 
   useEffect(() => {
-    console.log(allWeatherList);
     if (allWeatherList !== []) {
       setLoad(true);
     }
   }, [allWeatherList]);
 
   const makeWeatherList = async () => {
-    console.log("MAP WEATHER");
-    console.log(allWeather);
     await setAllWeather(
       allWeather.map((item, k) => {
         const num = 1000 + 1000 * k;
@@ -196,8 +188,6 @@ const SideGlass = ({ days, rain, wind, high, low, feels, allWeather }) => {
               <Typography className={classes.headerC}>
                 Location History
               </Typography>
-
-              {/* {weatherCardList} */}
               {load ? allWeatherList : <p>Loading</p>}
             </Grid>
           </TabPanel>
