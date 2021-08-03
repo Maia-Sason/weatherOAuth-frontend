@@ -30,6 +30,8 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather, allWeather }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       height: "100vh",
+      width: "100vw",
+      overflowX: "hidden",
       flexGrow: 1,
     },
     paper: {
@@ -78,11 +80,9 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather, allWeather }) => {
   const [temp, setTemp] = useState(false);
   const [anim, setAnim] = useState(false);
   const [menu, setMenu] = useState(false);
-  const [test, setTest] = useState("");
 
   useEffect(() => {
     if (weather.main.temp !== undefined && weather.allLocations !== undefined) {
-      setTest(weather.main.temp);
       setLoad(true);
       setAnim(true);
       setTemp(true);
@@ -127,7 +127,7 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather, allWeather }) => {
                     {...(temp ? { timeout: 3000 } : {})}
                   >
                     <MainTemp
-                      temp={test}
+                      temp={weather.main.temp}
                       city={weather.city}
                       icon={weather.weather.icon}
                     />

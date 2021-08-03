@@ -1,7 +1,7 @@
 import { Typography, makeStyles, Box } from "@material-ui/core";
 import WeatherIcon from "../WeatherIcon";
 
-const useStyles = makeStyles((themes) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     direction: "column",
@@ -21,11 +21,21 @@ const useStyles = makeStyles((themes) => ({
   },
   aside: {
     display: "inline",
-    fontSize: "36px",
     color: "white",
     verticalAlign: "bottom",
     letterSpacing: "2px",
     fontWeight: 200,
+    fontSize: "36px",
+  },
+  [theme.breakpoints.up("xs")]: {
+    aside: {
+      fontSize: "10vw",
+    },
+  },
+  [theme.breakpoints.up("sm")]: {
+    aside: {
+      fontSize: "36px",
+    },
   },
   icon: {
     fill: "white",

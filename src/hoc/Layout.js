@@ -53,15 +53,6 @@ function Layout({
     setLoading(true);
   }, [longitude, latitude]);
 
-  useEffect(async () => {
-    // if (isAuthenticated) {
-    //   await loadUser();
-    //   await getAllWeather();
-    //   await getLocationFromMem();
-    //   await getUserLocation();
-    // }
-  }, []);
-
   return <>{loading ? children : <LinearProgress color="primary" />}</>;
 }
 

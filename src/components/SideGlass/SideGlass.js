@@ -24,12 +24,16 @@ import LocationWeather from "../LocationWeather";
 
 const useStyles = makeStyles((theme) => ({
   sidePaper: {
-    height: "95vh",
     backgroundColor: "rgba(100, 100, 100, .15)",
-    overflowY: "scroll",
     backdropFilter: "blur(5px)",
     color: "white",
     padding: "20px",
+  },
+  [theme.breakpoints.up("md")]: {
+    sidePaper: {
+      overflowY: "scroll",
+      height: "95vh",
+    },
   },
   headerC: {
     fontSize: "4em",
