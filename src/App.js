@@ -14,7 +14,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Component import
 import Layout from "./hoc/Layout";
+import LayoutInfo from "./hoc/LayoutInfo";
 import HomeAlt from "./containers/HomeAlt";
+import Privacy from "./containers/Privacy";
+import Sources from "./containers/Sources";
+import Terms from "./containers/Terms";
 import Login from "./containers/Login";
 import All from "./containers/All.js";
 
@@ -34,6 +38,21 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/" component={HomeAlt} />
               <Route exact path="/all" component={All} />
+              <Route exact path="/privacy">
+                <LayoutInfo>
+                  <Privacy />
+                </LayoutInfo>
+              </Route>
+              <Route exact path="/sources">
+                <LayoutInfo>
+                  <Sources />
+                </LayoutInfo>
+              </Route>
+              <Route exact path="/terms">
+                <LayoutInfo>
+                  <Terms />
+                </LayoutInfo>
+              </Route>
             </Layout>
           </Router>
         </CssBaseline>

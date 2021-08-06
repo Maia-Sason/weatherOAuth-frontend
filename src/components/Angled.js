@@ -24,6 +24,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "30px",
     position: "absolute",
   },
+  [theme.breakpoints.up("xs")]: {
+    root: {
+      height: "200vh",
+    },
+  },
+  [theme.breakpoints.up("md")]: {
+    root: {
+      height: "100vh",
+    },
+  },
 }));
 
 export default function Angled({ children }) {

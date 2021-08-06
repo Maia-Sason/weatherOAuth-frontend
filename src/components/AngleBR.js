@@ -2,8 +2,8 @@ import { makeStyles } from "@material-ui/core";
 const color = "#f1a42d";
 const useStyles = makeStyles((theme) => ({
   root: {
+    width: "100%",
     backgroundColor: color,
-    width: "120%",
     height: "10px",
     clipPath: "polygon(0 40%, 100% 0%, 95% 90%, 2% 70%)",
   },
