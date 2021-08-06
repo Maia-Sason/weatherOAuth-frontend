@@ -10,6 +10,7 @@ import {
   AUTHENTICATE_FAIL,
   GET_LOCATION_SUCCESS,
   GET_LOCATION_FAIL,
+  BUTTON_REFRESH,
 } from "../actions/types";
 
 // set up initial state here
@@ -46,12 +47,20 @@ export default function (state = initState, action) {
         currentLatitude: payload[0],
         currentLongitude: payload[1],
         error: "",
+        locationError: false,
       };
     case GET_LOCATION_FAIL:
       return {
         ...state,
         error: payload,
+        locationError: true,
       };
+    case BUTTON_REFRESH: {
+      return {
+        ...state,
+        buttonRefresh: payload,
+      };
+    }
     case LOGOUT_SUCCESS:
       return {
         state: initState,

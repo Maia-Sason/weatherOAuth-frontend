@@ -12,16 +12,21 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   scroll: {
-    postion: "absolute",
+    position: "absolute",
+    // background: "red",
     height: "100vh",
     width: "100vw",
     overflowY: "auto",
-    top: 0,
+    bottom: "50vh",
+    zIndex: 0,
     left: 0,
+  },
+  [theme.breakpoints.down("sm")]: {
+    bottom: "50vh",
   },
 }));
 
-export default function CanvasDisplay() {
+export default function CanvasDisplay({ children }) {
   softShadows();
   const classes = useStyles();
   const scrollRef = useRef();
@@ -79,16 +84,17 @@ export default function CanvasDisplay() {
         <div
           ref={scrollRef}
           onScroll={doScroll}
-          style={{
-            position: "absolute",
-            // background: "red",
-            height: "100vh",
-            width: "100vw",
-            overflowY: "auto",
-            bottom: "20vh",
-            zIndex: 0,
-            left: 0,
-          }}
+          className={classes.scroll}
+          // style={{
+          //   position: "absolute",
+          //   // background: "red",
+          //   height: "100vh",
+          //   width: "100vw",
+          //   overflowY: "auto",
+          //   bottom: "50vh",
+          //   zIndex: 0,
+          //   left: 0,
+          // }}
         >
           <div style={{ height: "120vh" }}></div>
         </div>

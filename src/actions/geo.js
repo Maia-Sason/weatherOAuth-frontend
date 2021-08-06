@@ -4,6 +4,7 @@ import {
   GET_LOCATION_FAIL,
   GET_GEO_WEATHER_SUCCESS,
   GET_GEO_WEATHER_FAIL,
+  BUTTON_REFRESH,
 } from "./types";
 
 const location = "https://weatherlocation.herokuapp.com";
@@ -52,7 +53,8 @@ export const getUserLocation = () => async (dispatch) => {
   function error() {
     dispatch({
       type: GET_LOCATION_FAIL,
-      payload: "Issue retrieving geocoordinates.",
+      payload:
+        "Issue retrieving geocoordinates. Please make sure location services are enabled on both browser and device.",
     });
   }
   if (!navigator.geolocation) {
@@ -63,4 +65,11 @@ export const getUserLocation = () => async (dispatch) => {
   } else {
     navigator.geolocation.getCurrentPosition(success, error);
   }
+};
+
+export const setButtonRefresh = (bool) => async (dispatch) => {
+  dispatch({
+    type: BUTTON_REFRESH,
+    payload: bool,
+  });
 };

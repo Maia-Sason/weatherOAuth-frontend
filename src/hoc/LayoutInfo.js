@@ -59,36 +59,7 @@ export default function LayoutInfo({ children }) {
       <div className={classes.root}>
         <div className={classes.container}>{children}</div>
         <div className={classes.footer}>
-          <Footer>
-            <a
-              href="https://www.iubenda.com/privacy-policy/75716397"
-              class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe "
-            >
-              <Typography className={classes.textOnDark}>
-                Privacy Policy
-              </Typography>
-            </a>
-
-            <Link to={"/terms"}>
-              <Typography className={classes.textOnDark}>
-                Delete Data
-              </Typography>
-            </Link>
-            <Link
-              to={{
-                pathname: "https://github.com/Maia-Sason/weatherOAuth-backend",
-              }}
-              target="_blank"
-            >
-              <Typography className={classes.textOnDark}>Github</Typography>
-            </Link>
-            <Link to={"/sources"}>
-              <Typography className={classes.textOnDark}>Sources</Typography>
-            </Link>
-            <Typography className={classes.textOnDark}>
-              Made by Maia Sason
-            </Typography>
-          </Footer>
+          <Footer />
         </div>
       </div>
     </>

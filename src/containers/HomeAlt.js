@@ -10,7 +10,9 @@ import SideGlass from "../components/SideGlass/SideGlass";
 import Greeting from "../components/Greeting/Greeting";
 import MainTemp from "../components/MainTemp/MainTemp";
 import StickyBG from "../components/StickyBG/StickyBG";
+import ErrorNotification from "../components/errorComp/ErrorNotification";
 import Wave from "react-wavify";
+import { getUserLocation } from "../actions/geo";
 
 import {
   Typography,
@@ -26,7 +28,16 @@ import {
   IconButton,
 } from "@material-ui/core";
 
-const HomeAlt = ({ logout, isAuthenticated, user, weather, allWeather }) => {
+const HomeAlt = ({
+  logout,
+  getUserLocation,
+  isAuthenticated,
+  user,
+  weather,
+  allWeather,
+  error,
+  errorButton,
+}) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       height: "100vh",
@@ -43,8 +54,13 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather, allWeather }) => {
       height: "100vh",
       backgroundColor: "black",
       display: "flex",
+      flexDirection: "column",
+      alignContent: "center",
       justifyContent: "center",
       alignItems: "center",
+      "& > * + *": {
+        marginTop: theme.spacing(2),
+      },
     },
     header: {
       display: "flex",
@@ -80,6 +96,15 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather, allWeather }) => {
   const [temp, setTemp] = useState(false);
   const [anim, setAnim] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [errorState, setErrorState] = useState(false);
+
+  useEffect(() => {
+    if (error != "") {
+      setErrorState(true);
+    } else {
+      setErrorState(false);
+    }
+  }, [error]);
 
   useEffect(() => {
     if (weather.main.temp !== undefined && weather.allLocations !== undefined) {
@@ -102,6 +127,13 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather, allWeather }) => {
     <>
       {load ? (
         <div className={classes.root}>
+          {errorState && (
+            <ErrorNotification
+              error={error}
+              buttonShow={errorButton}
+              button={getUserLocation}
+            />
+          )}
           <Grid container>
             <Grid item lg={7} md={5} sm={12}>
               <Grid container direction="row" justifyContent="space-around">
@@ -198,6 +230,17 @@ const HomeAlt = ({ logout, isAuthenticated, user, weather, allWeather }) => {
       ) : (
         <Paper className={classes.paperLoad} square>
           <CircularProgress color="secondary" />
+          {errorState && (
+            <Grid container justify="center">
+              <Grid item xs={5}>
+                <ErrorNotification
+                  error={error}
+                  buttonShow={errorButton}
+                  button={getUserLocation}
+                />
+              </Grid>
+            </Grid>
+          )}
         </Paper>
       )}
     </>
@@ -209,6 +252,8 @@ const mapStatetoProps = (state) => ({
   allWeather: state.weather.allLocations,
   user: state.user.name,
   weather: state.weather,
+  error: state.user.error,
+  errorButton: state.user.buttonRefresh,
 });
 
-export default connect(mapStatetoProps, { logout })(HomeAlt);
+export default connect(mapStatetoProps, { logout, getUserLocation })(HomeAlt);

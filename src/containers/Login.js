@@ -275,28 +275,7 @@ function Login({ isAuthenticated, checkAuthenticated, loginFacebook }) {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Footer>
-            <a
-              href="https://www.iubenda.com/privacy-policy/75716397"
-              class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe "
-            >
-              <Typography className={classes.textOnDark}>
-                Privacy Policy
-              </Typography>
-            </a>
-            <Link to={"/terms"}>
-              <Typography className={classes.textOnDark}>
-                Delete Data
-              </Typography>
-            </Link>
-            <Typography className={classes.textOnDark}>Github</Typography>
-            <Link to={"/sources"}>
-              <Typography className={classes.textOnDark}>Sources</Typography>
-            </Link>
-            <Typography className={classes.textOnDark}>
-              Made by Maia Sason ©
-            </Typography>
-          </Footer>
+          <Footer />
         </Grid>
       </Angled>
 

@@ -16,6 +16,8 @@ export const USER_FAIL = "USER_FAIL";
 export const GET_LOCATION_SUCCESS = "GET_LOCATION";
 export const GET_LOCATION_FAIL = "GET_LOCATION_FAIL";
 
+export const BUTTON_REFRESH = "BUTTON_REFRESH";
+
 // Reach out to OpenWeather through server to retrieve weather info
 export const GET_GEO_WEATHER_SUCCESS = "GET_GEO_WEATHER_SUCCESS";
 export const GET_GEO_WEATHER_FAIL = "GET_GEO_WEATHER_FAIL";
