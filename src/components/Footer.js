@@ -10,12 +10,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    "& > *": {
+      textDecoration: "none",
+    },
   },
   textOnDark: {
     color: "white",
     whiteSpace: "nowrap",
     fontWeight: 300,
-    textDecoration: "none",
   },
 }));
 
@@ -25,7 +27,7 @@ export default function Footer({ children }) {
     <div className={classes.root}>
       <a
         href="https://www.iubenda.com/privacy-policy/75716397"
-        class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe "
+        className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe "
       >
         <Typography className={classes.textOnDark}>Privacy Policy</Typography>
       </a>

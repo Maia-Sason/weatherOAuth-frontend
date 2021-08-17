@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Typography, Box } from "@material-ui/core";
 
-function Sources({ isAuthenticated, checkAuthenticated, loginFacebook }) {
+function Sources() {
   return (
     <div>
       <Grid container direction="column" justify="center" alignItems="center">

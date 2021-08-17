@@ -12,6 +12,7 @@ import MainTemp from "../components/MainTemp/MainTemp";
 import StickyBG from "../components/StickyBG/StickyBG";
 import ErrorNotification from "../components/errorComp/ErrorNotification";
 import Wave from "react-wavify";
+import TextLoading from "../components/TextLoading";
 import { getUserLocation } from "../actions/geo";
 
 import {
@@ -96,6 +97,7 @@ const HomeAlt = ({
   const [temp, setTemp] = useState(false);
   const [anim, setAnim] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [loadUser, setLoadUser] = useState(false);
   const [errorState, setErrorState] = useState(false);
 
   useEffect(() => {
@@ -105,6 +107,12 @@ const HomeAlt = ({
       setErrorState(false);
     }
   }, [error]);
+
+  useEffect(() => {
+    if (user) {
+      setLoadUser(true);
+    }
+  }, [user]);
 
   useEffect(() => {
     if (weather.main.temp !== undefined && weather.allLocations !== undefined) {
@@ -230,6 +238,7 @@ const HomeAlt = ({
       ) : (
         <Paper className={classes.paperLoad} square>
           <CircularProgress color="secondary" />
+          {loadUser && <TextLoading username={user} />}
           {errorState && (
             <Grid container justify="center">
               <Grid item xs={5}>
