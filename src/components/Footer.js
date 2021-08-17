@@ -36,7 +36,7 @@ export default function Footer({ children }) {
       </Link>
       <Link
         to={{
-          pathname: "https://github.com/Maia-Sason/weatherOAuth-backend",
+          pathname: "https://github.com/Maia-Sason/WeatherOAuth",
         }}
         target="_blank"
       >
